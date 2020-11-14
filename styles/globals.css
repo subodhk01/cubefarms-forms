@@ -146,11 +146,20 @@ html {
 }
 
 .formStepContainer {
-	border: 1px solid rgba(192, 192, 192, 0.342);
 	border-radius: 10px;
-	width: 680px;
+	max-width: 680px;
 	padding: 2rem;
 	display: flex;
+	flex-direction: column;
+}
+
+.radio-container {
+	width: 300px !important;
+	padding: 1rem !important;
+	font-size: 1.3rem !important;
+	font-family: "madetommy-thin";
+	display: flex;
+	align-items: center;
 }
 
 @media(max-width: 768px){

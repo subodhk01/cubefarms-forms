@@ -11,8 +11,8 @@ const TYPE = {
 let custom = {
     enterRight: 'animate__animated animate__fadeIn',
     enterLeft: 'animate__animated animate__fadeIn',
-    exitRight: 'animate__animated animate__fadeOut animate__faster',
-    exitLeft: 'animate__animated animate__fadeOut animate__faster'
+    exitRight: '',
+    exitLeft: ''
 }
 
 export default function HireFreelancerForm(){
@@ -39,7 +39,7 @@ export default function HireFreelancerForm(){
 function Step1(props){
     return(
         <div className="formStepContainer">
-            <div className="text-center">
+            <div className="text-center mb-5">
                 <h3 className="mt-bold">Thank you for your interest in freetribe</h3>
                 <h5 className="text-muted">Hire trained and vetted freelancers from our exclusive community</h5>
             </div>
@@ -104,12 +104,12 @@ function Step2(props){
         props.nextStep()
     }
     return(
-        <div className="">
+        <div className="formStepContainer">
             <div>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <div className="mb-5">
-                            <h5 className="text-muted">What category of freelancers you are looking for :</h5>
+                            <h2 className="text-muted">What category of freelancers you are looking for :</h2>
                         </div>
                         <div>
                             <div className="row no-gutters">
@@ -151,35 +151,35 @@ function Step3(props){
         props.nextStep()
     }
     return(
-        <div className="">
+        <div className="formStepContainer">
             <div>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <div className="mb-5">
-                            <h5 className="text-muted">What type of {props.type} you need :</h5>
+                            <h2 className="text-muted">What type of {props.type} you need :</h2>
                         </div>
                         <div>
                         <Radio.Group onChange={(event) => props.setKind(event.target.value)} value={props.kind}>
                             {props.type === TYPE.DEVELOPER &&
                                 <>
-                                    <Radio value={"frontend"}>Front End</Radio>
-                                    <Radio value={"backend"}>Back End</Radio>
-                                    <Radio value={"fullstack"}>Full Stack</Radio>
-                                    <Radio value={"mobile"}>Mobile</Radio>
-                                    <Radio value={"cms"}>CMS</Radio>
+                                    <Radio value={"frontend"} className="radio-container">Front End</Radio>
+                                    <Radio value={"backend"} className="radio-container">Back End</Radio>
+                                    <Radio value={"fullstack"} className="radio-container">Full Stack</Radio>
+                                    <Radio value={"mobile"} className="radio-container">Mobile</Radio>
+                                    <Radio value={"cms"} className="radio-container">CMS</Radio>
                                 </>
                             }
                             {props.type === TYPE.DESIGNER &&
                                 <>
-                                    <Radio value={"UI"}>UI/ visual design</Radio>
-                                    <Radio value={"UX"}>UX/research</Radio>
-                                    <Radio value={"graphic"}>Brand/graphics design</Radio>
-                                    <Radio value={"game"}>Game designer</Radio>
-                                    <Radio value={"web"}>Web design</Radio>
-                                    <Radio value={"product"}>Product design</Radio>
-                                    <Radio value={"mobile"}>Mobile design</Radio>
-                                    <Radio value={"illustrator"}>Illustrator</Radio>
-                                    <Radio value={"animation"}>Animation/ motion graphics</Radio>
+                                    <Radio value={"UI"} className="radio-container">UI/ visual design</Radio>
+                                    <Radio value={"UX"} className="radio-container">UX/research</Radio>
+                                    <Radio value={"graphic"} className="radio-container">Brand/graphics design</Radio>
+                                    <Radio value={"game"} className="radio-container">Game designer</Radio>
+                                    <Radio value={"web"} className="radio-container">Web design</Radio>
+                                    <Radio value={"product"} className="radio-container">Product design</Radio>
+                                    <Radio value={"mobile"} className="radio-container">Mobile design</Radio>
+                                    <Radio value={"illustrator"} className="radio-container">Illustrator</Radio>
+                                    <Radio value={"animation"} className="radio-container">Animation/ motion graphics</Radio>
                                 </>
                             }
                         </Radio.Group>
