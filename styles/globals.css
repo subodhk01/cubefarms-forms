@@ -147,10 +147,11 @@ html {
 
 .formStepContainer {
 	border-radius: 10px;
-	max-width: 680px;
+	max-width: 980px;
 	padding: 2rem;
 	display: flex;
 	flex-direction: column;
+	text-align: center;
 }
 
 .radio-container {

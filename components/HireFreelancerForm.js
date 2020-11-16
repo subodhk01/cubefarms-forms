@@ -8,6 +8,50 @@ const TYPE = {
     DESIGNER: "designer"
 }
 
+const SKILLS = {
+    [TYPE.DESIGNER]: [
+        "Adobe photoshop",
+        "Logo",
+        "Figma",
+        "Wordpress",
+        "Adobe illustrator",
+        "Mobile UI",
+        "Branding",
+        "Wireframing",
+        "Sketch",
+        "Adobe after effects",
+        "Adobe 3Ds max",
+        "Motion builder",
+        "Blender",
+    ],
+    [TYPE.DEVELOPER]: [
+        "React",
+        "Node JS",
+        "CSS",
+        "JAVASCRIPT",
+        "HTML5",
+        "Amazon web services",
+        "Angular",
+        "JAVA",
+        "MySQL",
+        "Python",
+        "Ruby on rails",
+        "React native",
+        "Flutter",
+        "Android",
+        "IOS",
+        "Wordpress",
+        "Django",
+        "Kubernates",
+        "JQuery",
+        "Ruby",
+        "Angular JS",
+        "Spring",
+        "Typescript",
+        "PHP",
+    ]
+}
+
 let custom = {
     enterRight: 'animate__animated animate__fadeIn',
     enterLeft: 'animate__animated animate__fadeIn',
@@ -18,12 +62,27 @@ let custom = {
 export default function HireFreelancerForm(){
     const [ type, setType ] = React.useState()
     const [ kind, setKind ] = React.useState()
+    const [ projectType, setProjectType ] = React.useState()
+    const [ amount, setAmount ] = React.useState()
+    const [ budget, setBudget ] = React.useState()
+    const [ duration, setDuration ] = React.useState()
+    const [ commitment, setCommitment ] = React.useState()
+    const [ start, setStart ] = React.useState()
+    const [ remotely, setRemotely ] = React.useState()
     return(
         <>
             <StepWizard initialStep={1} transitions={custom} className="h-100">
                 <Step1 />
                 <Step2 setType={setType} />
                 <Step3 type={type} kind={kind} setKind={setKind} />
+                <Step4 type={type} />
+                <Step5 type={type} projectType={projectType} setProjectType={setProjectType} amount={amount} setAmount={setAmount} />
+                <Step6 type={type} budget={budget} setBudget={setBudget} duration={duration} setDuration={setDuration} />
+                <Step7 type={type} commitment={commitment} setCommitment={setCommitment} start={start} setStart={setStart} />
+                <Step8 type={type} remotely={remotely} setRemotely={setRemotely} />
+                <Step9 type={type} kind={kind} projectType={projectType} amount={amount} budget={budget} 
+                    duration={duration} commitment={commitment} start={start} remotely={remotely} 
+                />
             </StepWizard>
             <style jsx>{`
                 
@@ -116,13 +175,13 @@ function Step2(props){
                                 <div className="col-6 p-2">
                                     <button onClick={() => props.setType(TYPE.DEVELOPER)} className="btn w-100 item-shadow cursor-pointer px-3 py-5 text-center">
                                         {/* <img /> */}
-                                        <h4>Developers</h4>
+                                        <h4 className="m-0">Developers</h4>
                                     </button>
                                 </div>
                                 <div onClick={() => props.setType(TYPE.DESIGNER)} className="col-6 p-2">
                                     <button className="btn w-100 item-shadow cursor-pointer px-3 py-5 text-center">
                                         {/* <img /> */}
-                                        <h4>Designers</h4>
+                                        <h4 className="m-0">Designers</h4>
                                     </button>
                                 </div>
                             </div>
@@ -189,10 +248,323 @@ function Step3(props){
                         <div className="btn btn-info" onClick={() => props.previousStep()}>
                             Back
                         </div>
+                        <button className="btn btn-info">
+                            Next
+                        </button>
                     </div>
                 </form>
             </div>
             <style jsx>{`
+                .item-shadow:hover {
+                    box-shadow: none;
+                    background: rgba(0,0,0,0.02)
+                }
+            `}</style>
+        </div>
+    )
+}
+
+function Step4(props){
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        props.nextStep()
+    }
+    return(
+        <div className="formStepContainer">
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <div className="mb-5">
+                            <h2 className="text-muted">What {props.type == TYPE.DESIGNER ? "design" : "technical"} skills do you require in your {props.type}:</h2>
+                        </div>
+                        <div>
+                            <div className="d-flex flex-wrap align-items-center justify-content-center">
+                                {props.type === TYPE.DEVELOPER &&
+                                    <>
+                                        {SKILLS[TYPE.DEVELOPER].map((item, index) =>
+                                            <div onClick={() => props.setType(TYPE.DEVELOPER)} className="btn item-shadow cursor-pointer p-3 text-center" key={index}>
+                                                {/* <img /> */}
+                                                <h6 className="m-0">{item}</h6>
+                                            </div>
+                                        )}
+                                    </>
+                                }
+                                {props.type === TYPE.DESIGNER &&
+                                    <>
+                                        {SKILLS[TYPE.DESIGNER].map((item, index) =>
+                                            <div onClick={() => props.setType(TYPE.DEVELOPER)} className="btn item-shadow cursor-pointer p-3 text-center" key={index}>
+                                                {/* <img /> */}
+                                                <h6 className="m-0">{item}</h6>
+                                            </div>
+                                        )}
+                                    </>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div className="text-center">
+                        <div className="btn btn-info" onClick={() => props.previousStep()}>
+                            Back
+                        </div>
+                        <button className="btn btn-info">
+                            Next
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <style jsx>{`
+                .formStepContainer{
+                    max-width: 1200px;
+                }
+                .item-shadow {
+                    width: 170px;
+                    margin: 1rem;
+                }
+                h6 {
+                    transition: 0.4s;
+                }
+                .item-shadow:hover {
+                    box-shadow: none;
+                    background: rgb(29 116 169 / 90%);
+                }
+                .item-shadow:hover h6 {
+                    color: white;
+                }
+            `}</style>
+        </div>
+    )
+}
+
+function Step5(props){
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        props.nextStep()
+    }
+    return(
+        <div className="formStepContainer text-left">
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <div className="mb-2">
+                            <h2 className="text-muted">What type of project you’re hiring for:</h2>
+                        </div>
+                        <div className="mb-4 ml-0 ml-md-3">
+                            <Radio.Group onChange={(event) => props.setProjectType(event.target.value)} value={props.projectType}>
+                                <Radio value={"new_project"} className="radio-container">New project</Radio>
+                                <Radio value={"existing"} className="radio-container">An existing project that needs additional resources</Radio>
+                                <Radio value={"ongoing_assistance"} className="radio-container">Ongoing consultation/assistance</Radio>
+                                <Radio value={"not_sure"} className="radio-container">I’m not sure</Radio>
+                            </Radio.Group>
+                        </div>
+                        <div className="mb-2">
+                            <h2 className="text-muted">How many {props.type}s you need :</h2>
+                        </div>
+                        <div className="ml-0 ml-md-3">
+                            <Radio.Group onChange={(event) => props.setAmount(event.target.value)} value={props.amount}>
+                                <Radio value={"one"} className="radio-container">One {props.type}</Radio>
+                                <Radio value={"multiple"} className="radio-container">Multiple {props.type}s</Radio>
+                                <Radio value={"cross"} className="radio-container">A cross-functional team (developers and designers)</Radio>
+                                <Radio value={"decide_later"} className="radio-container">I’ll decide later</Radio>
+                            </Radio.Group>
+                        </div>
+                    </div>
+                    <div className="text-center">
+                        <div className="btn btn-info" onClick={() => props.previousStep()}>
+                            Back
+                        </div>
+                        <button className="btn btn-info">
+                            Next
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <style jsx>{`
+                .item-shadow:hover {
+                    box-shadow: none;
+                    background: rgba(0,0,0,0.02)
+                }
+            `}</style>
+        </div>
+    )
+}
+
+function Step6(props){
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        props.nextStep()
+    }
+    return(
+        <div className="formStepContainer text-left">
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <div className="mb-2">
+                            <h2 className="text-muted">What is your hourly budget?</h2>
+                        </div>
+                        <div className="mb-4 ml-0 ml-md-3">
+                            <Radio.Group onChange={(event) => props.setBudget(event.target.value)} value={props.budget}>
+                                <Radio value={"20-40"} className="radio-container">20-40$</Radio>
+                                <Radio value={"40-60"} className="radio-container">40-60$</Radio>
+                                <Radio value={"60-80"} className="radio-container">60-80$</Radio>
+                                <Radio value={">80"} className="radio-container">&gt;80$</Radio>
+                                <Radio value={"not_sure"} className="radio-container">I’m not sure</Radio>
+                            </Radio.Group>
+                        </div>
+                        <div className="mb-2">
+                            <h2 className="text-muted">How long do you need a {props.type}?</h2>
+                        </div>
+                        <div className="ml-0 ml-md-3">
+                            <Radio.Group onChange={(event) => props.setDuration(event.target.value)} value={props.duration}>
+                                <Radio value={"1month"} className="radio-container">&gt;1 month</Radio>
+                                <Radio value={"1-3month"} className="radio-container">1-3 month</Radio>
+                                <Radio value={"3+month"} className="radio-container">3+ months</Radio>
+                                <Radio value={"not_sure"} className="radio-container">I'm not sure</Radio>
+                            </Radio.Group>
+                        </div>
+                    </div>
+                    <div className="text-center">
+                        <div className="btn btn-info" onClick={() => props.previousStep()}>
+                            Back
+                        </div>
+                        <button className="btn btn-info">
+                            Next
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <style jsx>{`
+                .item-shadow:hover {
+                    box-shadow: none;
+                    background: rgba(0,0,0,0.02)
+                }
+            `}</style>
+        </div>
+    )
+}
+
+function Step7(props){
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        props.nextStep()
+    }
+    return(
+        <div className="formStepContainer text-left">
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <div className="mb-2">
+                            <h2 className="text-muted">What level of time commitment do you require in your {props.type}?</h2>
+                        </div>
+                        <div className="mb-4 ml-0 ml-md-3">
+                            <Radio.Group onChange={(event) => props.setCommitment(event.target.value)} value={props.commitment}>
+                                <Radio value={"fulltime"} className="radio-container">Full time (40 or more hrs/week)</Radio>
+                                <Radio value={"parttime"} className="radio-container">Part-time (Less than 40 hrs/week)</Radio>
+                                <Radio value={"hourly"} className="radio-container">Hourly</Radio>
+                                <Radio value={"not_sure"} className="radio-container">I'm not sure</Radio>
+                            </Radio.Group>
+                        </div>
+                        <div className="mb-2">
+                            <h2 className="text-muted">When you need the {props.type} to start?</h2>
+                        </div>
+                        <div className="ml-0 ml-md-3">
+                            <Radio.Group onChange={(event) => props.setStart(event.target.value)} value={props.start}>
+                                <Radio value={"within_a_week"} className="radio-container">Within a week</Radio>
+                                <Radio value={"within_a_month"} className="radio-container">Within 1 month</Radio>
+                                <Radio value={"within_2_months"} className="radio-container">Within 2 months</Radio>
+                                <Radio value={"decide_later"} className="radio-container">I'll decide later</Radio>
+                            </Radio.Group>
+                        </div>
+                    </div>
+                    <div className="text-center">
+                        <div className="btn btn-info" onClick={() => props.previousStep()}>
+                            Back
+                        </div>
+                        <button className="btn btn-info">
+                            Next
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <style jsx>{`
+                .formStepContainer {
+                    max-width: 700px;
+                }
+                .item-shadow:hover {
+                    box-shadow: none;
+                    background: rgba(0,0,0,0.02)
+                }
+            `}</style>
+        </div>
+    )
+}
+
+function Step8(props){
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        props.nextStep()
+    }
+    return(
+        <div className="formStepContainer text-left">
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <div className="mb-2">
+                            <h2 className="text-muted">Are you comfortable working remotely with your {props.type}?</h2>
+                        </div>
+                        <div className="ml-0 ml-md-3">
+                            <Radio.Group onChange={(event) => props.setRemotely(event.target.value)} value={props.remotely}>
+                                <Radio value={"yes"} className="radio-container">Yes</Radio>
+                                <Radio value={"no"} className="radio-container">No</Radio>
+                                <Radio value={"not_sure"} className="radio-container">Not Sure</Radio>
+                            </Radio.Group>
+                        </div>
+                    </div>
+                    <div className="text-center">
+                        <div className="btn btn-info" onClick={() => props.previousStep()}>
+                            Back
+                        </div>
+                        <button className="btn btn-info">
+                            Review
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <style jsx>{`
+                .formStepContainer {
+                    max-width: 700px;
+                }
+                .item-shadow:hover {
+                    box-shadow: none;
+                    background: rgba(0,0,0,0.02)
+                }
+            `}</style>
+        </div>
+    )
+}
+
+function Step9(props){
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        props.nextStep()
+    }
+    return(
+        <div className="formStepContainer text-left">
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        review
+                    </div>
+                    <div className="text-center">
+                        <button className="btn btn-info">
+                            Confirm
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <style jsx>{`
+                .formStepContainer {
+                    max-width: 700px;
+                }
                 .item-shadow:hover {
                     box-shadow: none;
                     background: rgba(0,0,0,0.02)
