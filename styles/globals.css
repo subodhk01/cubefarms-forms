@@ -146,6 +146,16 @@ html {
 	height: 41.53px;
 }
 
+.ant-radio-checked .ant-radio-inner {
+	border-color: #262d3d;
+}
+.ant-radio-wrapper:hover .ant-radio, .ant-radio:hover .ant-radio-inner, .ant-radio-input:focus + .ant-radio-inner{
+	border-color: #262d3d;
+}
+.ant-radio-inner::after {
+	background-color: #262d3d;
+}
+
 .formStepContainer {
 	border-radius: 10px;
 	max-width: 980px;
@@ -157,7 +167,7 @@ html {
 .radio-container {
 	width: 300px !important;
 	padding: 0.4rem !important;
-	font-size: 1.3rem !important;
+	font-size: 1.13rem !important;
 	font-family: "madetommy-thin";
 	display: flex;
 	align-items: center;

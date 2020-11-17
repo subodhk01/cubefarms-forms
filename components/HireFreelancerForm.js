@@ -62,6 +62,45 @@ let custom = {
 export default function HireFreelancerForm(){
     const [ type, setType ] = React.useState()
     const [ kind, setKind ] = React.useState()
+    const [ skills, setSkills ] = React.useState({
+            "Adobe photoshop": false,
+            "Logo": false,
+            "Figma": false,
+            "Wordpress": false,
+            "Adobe illustrator": false,
+            "Mobile UI": false,
+            "Branding": false,
+            "Wireframing": false,
+            "Sketch": false,
+            "Adobe after effects": false,
+            "Adobe 3Ds max": false,
+            "Motion builder": false,
+            "Blender": false,
+            "React": false,
+            "Node JS": false,
+            "CSS": false,
+            "JAVASCRIPT": false,
+            "HTML5": false,
+            "Amazon web services": false,
+            "Angular": false,
+            "JAVA": false,
+            "MySQL": false,
+            "Python": false,
+            "Ruby on rails": false,
+            "React native": false,
+            "Flutter": false,
+            "Android": false,
+            "IOS": false,
+            "Wordpress": false,
+            "Django": false,
+            "Kubernates": false,
+            "JQuery": false,
+            "Ruby": false,
+            "Angular JS": false,
+            "Spring": false,
+            "Typescript": false,
+            "PHP": false,
+    })
     const [ projectType, setProjectType ] = React.useState()
     const [ amount, setAmount ] = React.useState()
     const [ budget, setBudget ] = React.useState()
@@ -75,7 +114,7 @@ export default function HireFreelancerForm(){
                 <Step1 />
                 <Step2 setType={setType} />
                 <Step3 type={type} kind={kind} setKind={setKind} />
-                <Step4 type={type} />
+                <Step4 type={type} skills={skills} setSkills={setSkills} />
                 <Step5 type={type} projectType={projectType} setProjectType={setProjectType} amount={amount} setAmount={setAmount} />
                 <Step6 type={type} budget={budget} setBudget={setBudget} duration={duration} setDuration={setDuration} />
                 <Step7 type={type} commitment={commitment} setCommitment={setCommitment} start={start} setStart={setStart} />
@@ -101,7 +140,7 @@ function Step1(props){
     return(
         <div className="formStepContainer">
             <div className="text-center mb-5">
-                <h3 className="mt-bold">Thank you for your interest in freetribe</h3>
+                <h3 className="mt-bold" style={{color: "#262d3d"}}>Thank you for your interest in freetribe</h3>
                 <h5 className="text-muted">Hire trained and vetted freelancers from our exclusive community</h5>
             </div>
             <div>
@@ -274,6 +313,12 @@ function Step4(props){
         event.preventDefault()
         props.nextStep()
     }
+    const handleSelect = (item) => {
+        props.setSkills({
+            ...props.skills,
+            [item]: !props.skills[item]
+        })
+    }
     return(
         <div className="formStepContainer">
             <div>
@@ -287,7 +332,7 @@ function Step4(props){
                                 {props.type === TYPE.DEVELOPER &&
                                     <>
                                         {SKILLS[TYPE.DEVELOPER].map((item, index) =>
-                                            <div onClick={() => props.setType(TYPE.DEVELOPER)} className="btn item-shadow cursor-pointer p-3 text-center" key={index}>
+                                            <div onClick={() => handleSelect(item)} className={`btn item-shadow cursor-pointer p-3 text-center ${props.skills[item] ? "active" : ""}`} key={index}>
                                                 {/* <img /> */}
                                                 <h6 className="m-0">{item}</h6>
                                             </div>
@@ -297,7 +342,7 @@ function Step4(props){
                                 {props.type === TYPE.DESIGNER &&
                                     <>
                                         {SKILLS[TYPE.DESIGNER].map((item, index) =>
-                                            <div onClick={() => props.setType(TYPE.DEVELOPER)} className="btn item-shadow cursor-pointer p-3 text-center" key={index}>
+                                            <div onClick={() => handleSelect(item)} className={`btn item-shadow cursor-pointer p-3 text-center ${props.skills[item] ? "active" : ""}`} key={index}>
                                                 {/* <img /> */}
                                                 <h6 className="m-0">{item}</h6>
                                             </div>
@@ -328,11 +373,18 @@ function Step4(props){
                 h6 {
                     transition: 0.4s;
                 }
-                .item-shadow:hover {
+                // .item-shadow:hover {
+                //     box-shadow: none;
+                //     background: #262d3d;
+                // }
+                // .item-shadow:hover h6 {
+                //     color: white;
+                // }
+                .active {
                     box-shadow: none;
                     background: #262d3d;
                 }
-                .item-shadow:hover h6 {
+                .active h6 {
                     color: white;
                 }
             `}</style>
