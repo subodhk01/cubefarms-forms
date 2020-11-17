@@ -15,7 +15,7 @@ export default function HireExpertForm(){
                         </div>
                     </div>
                     <div className="col-12 col-xl-3 bg-grey">
-                        sf
+                        
                     </div>
                 </div>
             </div>

@@ -85,7 +85,9 @@ export default function HireFreelancerForm(){
                 />
             </StepWizard>
             <style jsx>{`
-                
+                .btn {
+                    padding: 1rem 2rem;
+                }
             `}</style>
         </>
     )
@@ -144,7 +146,7 @@ function Step1(props){
                         </Select>
                     </div>
                     <div className="text-center">
-                        <div className="btn btn-info" onClick={() => props.nextStep()}>
+                        <div className="btn btn-next" onClick={() => props.nextStep()}>
                             Next
                         </div>
                     </div>
@@ -188,7 +190,7 @@ function Step2(props){
                         </div>
                     </div>
                     <div className="text-center">
-                        <div className="btn btn-info" onClick={() => props.previousStep()}>
+                        <div className="btn btn-back" onClick={() => props.previousStep()}>
                             Back
                         </div>
                     </div>
@@ -197,7 +199,10 @@ function Step2(props){
             <style jsx>{`
                 .item-shadow:hover {
                     box-shadow: none;
-                    background: rgba(0,0,0,0.02)
+                    background: #262d3d;
+                }
+                .item-shadow:hover h4 {
+                    color: white;
                 }
             `}</style>
         </div>
@@ -245,10 +250,10 @@ function Step3(props){
                         </div>
                     </div>
                     <div className="text-center">
-                        <div className="btn btn-info" onClick={() => props.previousStep()}>
+                        <div className="btn btn-back" onClick={() => props.previousStep()}>
                             Back
                         </div>
-                        <button className="btn btn-info">
+                        <button className="btn btn-next">
                             Next
                         </button>
                     </div>
@@ -257,7 +262,7 @@ function Step3(props){
             <style jsx>{`
                 .item-shadow:hover {
                     box-shadow: none;
-                    background: rgba(0,0,0,0.02)
+                    background: #262d3d;
                 }
             `}</style>
         </div>
@@ -303,10 +308,10 @@ function Step4(props){
                         </div>
                     </div>
                     <div className="text-center">
-                        <div className="btn btn-info" onClick={() => props.previousStep()}>
+                        <div className="btn btn-back" onClick={() => props.previousStep()}>
                             Back
                         </div>
-                        <button className="btn btn-info">
+                        <button className="btn btn-next">
                             Next
                         </button>
                     </div>
@@ -325,7 +330,7 @@ function Step4(props){
                 }
                 .item-shadow:hover {
                     box-shadow: none;
-                    background: rgb(29 116 169 / 90%);
+                    background: #262d3d;
                 }
                 .item-shadow:hover h6 {
                     color: white;
@@ -369,10 +374,10 @@ function Step5(props){
                         </div>
                     </div>
                     <div className="text-center">
-                        <div className="btn btn-info" onClick={() => props.previousStep()}>
+                        <div className="btn btn-back" onClick={() => props.previousStep()}>
                             Back
                         </div>
-                        <button className="btn btn-info">
+                        <button className="btn btn-next">
                             Next
                         </button>
                     </div>
@@ -423,10 +428,10 @@ function Step6(props){
                         </div>
                     </div>
                     <div className="text-center">
-                        <div className="btn btn-info" onClick={() => props.previousStep()}>
+                        <div className="btn btn-back" onClick={() => props.previousStep()}>
                             Back
                         </div>
-                        <button className="btn btn-info">
+                        <button className="btn btn-next">
                             Next
                         </button>
                     </div>
@@ -476,10 +481,10 @@ function Step7(props){
                         </div>
                     </div>
                     <div className="text-center">
-                        <div className="btn btn-info" onClick={() => props.previousStep()}>
+                        <div className="btn btn-back" onClick={() => props.previousStep()}>
                             Back
                         </div>
-                        <button className="btn btn-info">
+                        <button className="btn btn-next">
                             Next
                         </button>
                     </div>
@@ -520,10 +525,10 @@ function Step8(props){
                         </div>
                     </div>
                     <div className="text-center">
-                        <div className="btn btn-info" onClick={() => props.previousStep()}>
+                        <div className="btn btn-back" onClick={() => props.previousStep()}>
                             Back
                         </div>
-                        <button className="btn btn-info">
+                        <button className="btn btn-next">
                             Review
                         </button>
                     </div>
@@ -555,7 +560,7 @@ function Step9(props){
                         review
                     </div>
                     <div className="text-center">
-                        <button className="btn btn-info">
+                        <button className="btn btn-next">
                             Confirm
                         </button>
                     </div>
